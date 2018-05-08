@@ -25,7 +25,7 @@ SECRET_KEY = 'm#qfa35z($4jcs-f037p5%=iesxv3kbbl*)^esk)m72nuj6y)@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'organigrama.jujuy.gob.ar']
 
 
 # Application definition
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #PlugIns Extras
+    'tinymce',
+    #Desarrollos personales
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
