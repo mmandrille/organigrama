@@ -1,0 +1,15 @@
+{% block content %}
+    <li>
+        <a target="_blank" href="{{organismo.web}}">
+            {{ organismo.nombre }}
+        </a>
+        <!-- Traemos el listado de hijos -->
+        {% if organismo.hijos.exists %}
+            <ul>
+                {% for org_hijo in organismo.hijos.all %}
+                    {% include "nodo_arbol_organismos.html" with organismo=org_hijo %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endblock %}
