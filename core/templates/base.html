@@ -5,12 +5,15 @@
     <title>Calendario Gubernamental</title>
 
     {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/organigrama.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pop_up.css' %}" />
 
   </head>
   <body>
       {% block content %}
       
       {% endblock %}
+      <script type="text/javascript" src="{% static 'js/pop_up.js' %}"></script>
   </body>
 </html>

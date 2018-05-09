@@ -1,17 +1,9 @@
-body {
-    background-color: rgb(255, 255, 255);
-    width: 200%;
-}
-
-a .hidden { visibility:hidden; }
-a:visited .hidden { visibility:visible; }
-
-  .organigrama * {
+.organigrama * {
     margin: 0px;
     padding: 0px;
     background-color: rgb(255, 255, 255);
 }
-  
+
   .organigrama ul {
       padding-top: 20px;
     position: relative;

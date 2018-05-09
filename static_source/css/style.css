@@ -1,0 +1,4 @@
+body {
+    background-color: rgb(255, 255, 255);
+    width: 200%;/*Lo ideal seria que sea automatico con scroll*/
+}

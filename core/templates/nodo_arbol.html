@@ -1,0 +1,22 @@
+{% block content %}
+    <li>
+        <div class="popup" onclick="mostrar({{ organismo.id }})">
+            <a>{{ organismo.nombre }}</a>
+            <span class="popuptext" id="{{ organismo.id }}">
+                {% if organismo.icono %} <img src="/{{ organismo.icono.url }}" >{% endif %}
+                <div class="org_descripcion">{{ organismo.descripcion|safe }}</div>
+                <p>Direccion: {{ organismo.direccion }}</p>
+                <p>Telefono: {{ organismo.telefono }}</p>
+                <p>Pagina Web: {{ organismo.web }}</p>
+            </span>
+        </div>
+
+        {% if organismo.hijos.exists %}
+            <ul>
+                {% for org_hijo in organismo.hijos.all %}
+                    {% include "nodo_arbol.html" with organismo=org_hijo %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endblock %}
