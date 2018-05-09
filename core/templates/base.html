@@ -11,9 +11,12 @@
 
   </head>
   <body>
+      <div class="popup-overlay"></div>
       {% block content %}
       
       {% endblock %}
+      <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
       <script type="text/javascript" src="{% static 'js/pop_up.js' %}"></script>
+      
   </body>
 </html>

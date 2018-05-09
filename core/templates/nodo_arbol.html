@@ -1,14 +1,14 @@
 {% block content %}
     <li>
-        <div class="popup" onclick="mostrar({{ organismo.id }})">
+        <div class="popup">
             <a>{{ organismo.nombre }}</a>
-            <span class="popuptext" id="{{ organismo.id }}">
+            <div class="popuptext">
                 {% if organismo.icono %} <img src="/{{ organismo.icono.url }}" >{% endif %}
                 <div class="org_descripcion">{{ organismo.descripcion|safe }}</div>
                 <p>Direccion: {{ organismo.direccion }}</p>
                 <p>Telefono: {{ organismo.telefono }}</p>
                 <p>Pagina Web: {{ organismo.web }}</p>
-            </span>
+            </div>
         </div>
 
         {% if organismo.hijos.exists %}
