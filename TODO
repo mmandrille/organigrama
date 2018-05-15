@@ -1,5 +1,5 @@
-- Pop_up Funcional
-- Que el icono del organismo sea el fondo del pop_up
-- Si es Staff que pueda agregar elementos en el organigrama dinamicamente
+- Que el <a> dentro del popup no tenga estilo de organigrama
+
 
 - TODA la funcionalida de funcionarios
+    - Agregar DDJJ a los funcionarios.

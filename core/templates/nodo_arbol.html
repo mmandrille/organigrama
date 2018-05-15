@@ -1,13 +1,25 @@
 {% block content %}
     <li>
         <div class="popup">
-            <a>{{ organismo.nombre }}</a>
+            <a class "a_org">{{ organismo.nombre }}</a>
             <div class="popuptext">
-                {% if organismo.icono %} <img src="/{{ organismo.icono.url }}" >{% endif %}
+                {% if organismo.icono %} <img class = "img_logo" src="/{{ organismo.icono.url }}" >{% endif %}
                 <div class="org_descripcion">{{ organismo.descripcion|safe }}</div>
-                <p>Direccion: {{ organismo.direccion }}</p>
-                <p>Telefono: {{ organismo.telefono }}</p>
-                <p>Pagina Web: {{ organismo.web }}</p>
+                <h3> Informacion Util:</h3>
+                <p><b>Direccion:</b> {{ organismo.direccion }}</p>
+                <p><b>Telefonos:</b> {{ organismo.telefonos }}</p>
+                <a class="clean" target="_blank" href="{{ organismo.web }}"><b>Pagina Web</b></a>
+                {% if user.is_staff %}
+                    <p> 
+
+                        <a class="clean" target="_blank" href="/admin/core/organismo/{{ organismo.id }}/change/">
+                            <img class = "img_icon" src="/static/admin/img/icon-changelink.svg" alt="Modificar">
+                        </a>
+                        <a class="clean" target="_blank" href="/crear_hijo/{{ organismo.id }}">
+                            <img class = "img_icon" src="/static/admin/img/icon-addlink.svg" alt="Agregar SubOrganismo">
+                        </a>
+                    </p>
+                {% endif %}
             </div>
         </div>
 

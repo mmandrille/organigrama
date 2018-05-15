@@ -34,10 +34,9 @@ class Organismo(models.Model):
         else:
             return self.nombre
 
-
 class Funcionario(models.Model):
     organismo = models.ForeignKey(Organismo, on_delete=models.CASCADE)
-    cargo = models.CharField(max_length=2,choices=CARGOS, default=99)
+    cargo = models.IntegerField(choices=CARGOS, default=99)
     nombres = models.CharField('Nombres', max_length=100)
     apellidos = models.CharField('Apellidos', max_length=100)
     dni = models.CharField('DNI', max_length=100)
@@ -46,4 +45,4 @@ class Funcionario(models.Model):
     telefono = models.CharField('Telefono', max_length=20)
     activo = models.BooleanField(default=True)
     def __str__(self):
-        return self.cargo + ' de ' + self.organismo.nombre + '-' + self.nombre
+        return self.get_cargo_display() + ' de ' + self.organismo.nombre + '-' + self.nombres
