@@ -11,7 +11,7 @@
 .popup .popuptext {
     visibility: hidden;
     width: 300px;
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
     text-align: center;
     border-radius: 6px;
     padding: 8px 0;
@@ -28,12 +28,27 @@
     box-shadow: 0px 0px 15px #0000005c;
 }
 
-.popuptext img
+.popuptext .img_logo
 {
- width: 90%;
- margin: auto;
-     display: block;
+    max-width: 90%;
+    margin: auto;
+    display: block;
     margin-bottom: 15px;
+}
+
+.popuptext .img_icon {
+    display: inline;
+    float: right;
+    width: 8%; 
+    height: 8%; 
+}
+
+.popuptext .clean {
+    all: unset;
+}
+.popuptext .clean:hover {
+    all: unset;
+    color: rgb(105, 102, 102);
 }
 
 .popup .popuptext.active
@@ -43,14 +58,14 @@
 
 .popup-overlay
 {
- display: none;
-  position: absolute;
- width: 100vw;
- height: 100vh;
- background: #00000033;
- top: 0px;
- left: 0px;
- z-index: 1;
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: #00000033;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
 }
 
 .popup-overlay.active
