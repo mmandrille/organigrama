@@ -4,7 +4,7 @@
             <a class "a_org">{{ organismo.nombre }}</a>
             <div class="popuptext">
                 {% if organismo.icono %} <img class = "img_logo" src="/{{ organismo.icono.url }}" >{% endif %}
-                <div class="org_descripcion">{{ organismo.descripcion|safe }}</div>
+                <div class="clean">{{ organismo.descripcion|safe }}</div>
                 <h3> Informacion Util:</h3>
                 <p><b>Direccion:</b> {{ organismo.direccion }}</p>
                 <p><b>Telefonos:</b> {{ organismo.telefonos }}</p>

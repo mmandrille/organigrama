@@ -1,4 +1,7 @@
-- Que el <a> dentro del popup no tenga estilo de organigrama
+
+<div class="clean">{{ organismo.descripcion|safe }}</div> dentro del popup no tenga estilo de organigrama
+Que el popup siempre aparezca centrado en el medio de la pantalla.
+Que el ancho de la web sea acorde a la cantidad de objetos, ahora esta hardcodeado en style.class
 
 
 - TODA la funcionalida de funcionarios
