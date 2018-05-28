@@ -1,6 +1,9 @@
+import json
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime, date, timedelta
+from django.core import serializers
+
 #Import Personales
 from .models import Organismo, Funcionario
 
@@ -16,3 +19,11 @@ def crear_sub_org(request, id_padre):
     new_org.nombre = 'SubOrganismo'
     new_org.save()
     return HttpResponseRedirect('/admin/core/organismo/'+ str(new_org.id) + '/change/')
+
+def webserv_org(request):
+    organismos = [org.as_dict() for org in Organismo.objects.filter(activo=True)]
+    return HttpResponse(json.dumps({"data": organismos}), content_type='application/json')
+
+def webserv_func(request):
+    funcionarios = [func.as_dict() for func in Funcionario.objects.filter(activo=True)]
+    return HttpResponse(json.dumps({"data": funcionarios}), content_type='application/json')

@@ -33,6 +33,14 @@ class Organismo(models.Model):
             return self.nombre + ' > ' + self.padre.nombre
         else:
             return self.nombre
+    def as_dict(self):
+        if self.padre is None:
+            self.padre = self
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "padre": self.padre.id,
+        }
 
 class Funcionario(models.Model):
     organismo = models.ForeignKey(Organismo, on_delete=models.CASCADE)
@@ -46,3 +54,11 @@ class Funcionario(models.Model):
     activo = models.BooleanField(default=True)
     def __str__(self):
         return self.get_cargo_display() + ' de ' + self.organismo.nombre + '-' + self.nombres
+    def as_dict(self):
+        return {
+            "organismo": self.organismo.id,
+            "nombres": self.nombres,
+            "apellidos": self.apellidos,
+            "cargo": dict(CARGOS).get(self.cargo),
+            "dni": self.dni,
+        }

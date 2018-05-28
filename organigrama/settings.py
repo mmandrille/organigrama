@@ -25,7 +25,7 @@ SECRET_KEY = 'm#qfa35z($4jcs-f037p5%=iesxv3kbbl*)^esk)m72nuj6y)@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'organigrama.jujuy.gob.ar']
+ALLOWED_HOSTS = ['localhost', 'organigrama.jujuy.gob.ar', 'www.organigrama.jujuy.gob.ar']
 
 
 # Application definition
@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-AR'
 
 TIME_ZONE = 'America/Argentina/Jujuy'
 
@@ -140,3 +140,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mmandrille@gmail.com'
 EMAIL_HOST_PASSWORD = 'comoyoquiera15'
+
+#Actualizar Statics, no solo nuevas
+AWS_PRELOAD_METADATA = True
