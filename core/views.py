@@ -20,10 +20,10 @@ def crear_sub_org(request, id_padre):
     new_org.save()
     return HttpResponseRedirect('/admin/core/organismo/'+ str(new_org.id) + '/change/')
 
-def webserv_org(request):
+def ws_org(request):
     organismos = [org.as_dict() for org in Organismo.objects.filter(activo=True)]
     return HttpResponse(json.dumps({"data": organismos}), content_type='application/json')
 
-def webserv_func(request):
+def ws_func(request):
     funcionarios = [func.as_dict() for func in Funcionario.objects.filter(activo=True)]
     return HttpResponse(json.dumps({"data": funcionarios}), content_type='application/json')
