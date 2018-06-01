@@ -3,7 +3,7 @@ Para poder probar este proyecto solo deben Instalar:
 
 Correr:
 *  pip3 install -r requeriments.txt
-*  python3 manage.py createsuruser
+*  python3 manage.py createsuperuser
 *  python3 manage.py runserver
 
 Podran accederlo via: http://localhost:8000
