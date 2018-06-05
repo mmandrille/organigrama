@@ -129,12 +129,17 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/'
 
-# Configurar correos
+#Configuracion de Mail
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = ''
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'tumail@gmail.com'
+EMAIL_HOST_USER = 'tucorreo@dominio.com'
 EMAIL_HOST_PASSWORD = 'tupassword'
+#CREAR ARCHIVO credenciales.py solo para Sobre Escribir con las variables importadas
+try:
+    from .credenciales import *
+except ImportError:
+    pass
 
 #Actualizar Statics, no solo nuevas
 AWS_PRELOAD_METADATA = True
