@@ -1,4 +1,7 @@
 # exclude everything except directory foo/bar
 db.sqlite3
+credenciales.py
 *.pyc
 archivos/*
+static/*
+.idea/
