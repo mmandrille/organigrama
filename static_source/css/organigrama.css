@@ -8,7 +8,7 @@
     position: relative;
   }
   
-  .organigrama li {
+  .organigrama>ul li {
       float: left;
     text-align: center;
       list-style-type: none;
@@ -16,7 +16,7 @@
     position: relative;
   }
   
-  .organigrama li::before, .organigrama li::after {
+  .organigrama>ul li::before, .organigrama>ul li::after {
       content: '';
       position: absolute;
     top: 0px;
@@ -26,38 +26,38 @@
     height: 20px;
   }
   
-  .organigrama li::after{
+  .organigrama>ul li::after{
       right: auto;
     left: 50%;
       border-left: 1px solid #f80;
   }
   
-  .organigrama li:only-child::before, .organigrama li:only-child::after {
+  .organigrama>ul li:only-child::before, .organigrama>ul li:only-child::after {
       display: none;
   }
   
-  .organigrama li:only-child {
+  .organigrama>ul li:only-child {
     padding-top: 0;
   }
   
-  .organigrama li:first-child::before, .organigrama li:last-child::after{
+  .organigrama>ul li:first-child::before, .organigrama>ul li:last-child::after{
       border: 0 none;
   }
   
-  .organigrama li:last-child::before{
+  .organigrama>ul li:last-child::before{
       border-right: 1px solid #f80;
       -webkit-border-radius: 0 5px 0 0;
       -moz-border-radius: 0 5px 0 0;
       border-radius: 0 5px 0 0;
   }
   
-  .organigrama li:first-child::after{
+  .organigrama>ul li:first-child::after{
       border-radius: 5px 0 0 0;
       -webkit-border-radius: 5px 0 0 0;
       -moz-border-radius: 5px 0 0 0;
   }
   
-  .organigrama ul ul::before {
+  .organigrama>ul ul::before {
       content: '';
       position: absolute;
     top: 0;
@@ -67,7 +67,7 @@
     height: 20px;
   }
   
-  .organigrama li a{
+  .organigrama>ul li a{
       border: 1px solid #f80;
       padding: 1em 0.75em;
       text-decoration: none;
@@ -84,7 +84,7 @@
       transition: all 500ms;
   }
   
-  .organigrama li a:hover {
+  .organigrama>ul li a:hover {
       border: 1px solid #fff;
       color: rgb(105, 102, 102);
       background-color: rgba(255,128,0,0.7);
