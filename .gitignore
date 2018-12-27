@@ -5,3 +5,5 @@ credenciales.py
 archivos/*
 static/*
 .idea/
+venv/
+*.log
