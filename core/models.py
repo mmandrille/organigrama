@@ -9,23 +9,27 @@ from django.core.files.storage import FileSystemStorage
 from organigrama.settings import MEDIA_URL
 
 #Choice Field
-CARGOS =    ((0,'Gobernador'), 
-            (10,'Secretario'), (11, 'Secretaria'), (12, 'Subsecretario'), (13, 'SubScretaria'),
-            (21, 'Director'), (22, 'Directora'), 
-            (31, 'Coordinador'), (32, 'Coordinadora'),
-
-            (99, 'Administrativo'))
+CARGOS =    ((0,'Gobernador'), (0,'Vice Gobernador'),
+            (10,'Ministro'),
+            (20,'Secretario'), (21, 'Secretaria'), (22, 'Subsecretario'), (23, 'SubScretaria'),
+            (31, 'Director'), (32, 'Directora'), (33, 'SubDirector'), (34, 'SubDirectora'), 
+            (41, 'Coordinador'), (42, 'Coordinadora'),
+            (51, 'Consejal'), (52, 'Diputado'), (53, 'Senador'),
+            (61, 'Juez'), (62, 'Fiscal'),
+            (71, 'Intendente'), (72, 'Comisionado'),
+            (81, 'Escribano'), (82, 'Presidente'), (83, 'Vice Presidente'),
+            (91, 'Administrativo'), (92, 'Jefe'), (93, 'Obispo'), (94, 'Sacerdote'), (95, 'Consul'), (96, 'Asesor'))
 
 # Create your models here.
 class Organismo(models.Model):
     padre = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='hijos')
     nombre = models.CharField('Titulo', max_length=200)
-    descripcion = HTMLField()
+    descripcion = HTMLField(blank=True, null=True)
     icono = models.ImageField(storage=FileSystemStorage(location=MEDIA_URL), blank=True, null=True)
     direccion = models.CharField('Direccion', max_length=200)
     cuit = models.CharField('CUIT', max_length=13, blank=True, null=True)
     telefonos = models.CharField('Telefonos', max_length=100)
-    web = models.URLField('Web')
+    web = models.URLField('Web', blank=True, null=True)
     activo = models.BooleanField(default=True)
     visible = models.BooleanField(default=True)
     def __str__(self):
@@ -47,7 +51,7 @@ class Funcionario(models.Model):
     cargo = models.IntegerField(choices=CARGOS, default=99)
     nombres = models.CharField('Nombres', max_length=100)
     apellidos = models.CharField('Apellidos', max_length=100)
-    dni = models.CharField('DNI', max_length=100)
+    dni = models.CharField('DNI', max_length=100, blank=True, null=True)
     titulo = models.CharField('Titulo Profesional', max_length=20)
     email = models.EmailField('Correo Personal')
     telefono = models.CharField('Telefono', max_length=20)
