@@ -51,6 +51,7 @@ class Funcionario(models.Model):
     cargo = models.IntegerField(choices=CARGOS, default=99)
     nombres = models.CharField('Nombres', max_length=100)
     apellidos = models.CharField('Apellidos', max_length=100)
+    foto = models.ImageField(storage=FileSystemStorage(location=MEDIA_URL), blank=True, null=True)
     dni = models.CharField('DNI', max_length=100, blank=True, null=True)
     titulo = models.CharField('Titulo Profesional', max_length=20)
     email = models.EmailField('Correo Personal', blank=True, null=True)
