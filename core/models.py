@@ -15,7 +15,7 @@ CARGOS =    ((0,'Gobernador'), (0,'Vice Gobernador'),
             (31, 'Director'), (32, 'Directora'), (33, 'SubDirector'), (34, 'SubDirectora'), 
             (41, 'Coordinador'), (42, 'Coordinadora'),
             (51, 'Consejal'), (52, 'Diputado'), (53, 'Senador'),
-            (61, 'Juez'), (62, 'Fiscal'),
+            (61, 'Juez'), (62, 'Fiscal'), (63, 'Vocal'),
             (71, 'Intendente'), (72, 'Comisionado'),
             (81, 'Escribano'), (82, 'Presidente'), (83, 'Vice Presidente'),
             (91, 'Administrativo'), (92, 'Jefe'), (93, 'Obispo'), (94, 'Sacerdote'), (95, 'Consul'), (96, 'Asesor'))
