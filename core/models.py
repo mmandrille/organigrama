@@ -53,8 +53,8 @@ class Funcionario(models.Model):
     apellidos = models.CharField('Apellidos', max_length=100)
     dni = models.CharField('DNI', max_length=100, blank=True, null=True)
     titulo = models.CharField('Titulo Profesional', max_length=20)
-    email = models.EmailField('Correo Personal')
-    telefono = models.CharField('Telefono', max_length=20)
+    email = models.EmailField('Correo Personal', blank=True, null=True)
+    telefono = models.CharField('Telefono', max_length=20, blank=True, null=True)
     activo = models.BooleanField(default=True)
     def __str__(self):
         return self.get_cargo_display() + ' de ' + self.organismo.nombre + '-' + self.nombres
