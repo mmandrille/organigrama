@@ -5,6 +5,7 @@ from django.db import models
 from tinymce.models import HTMLField
 from django.core.files.storage import FileSystemStorage
 
+from datetime import datetime
 #Import personales
 from organigrama.settings import MEDIA_URL
 
@@ -56,6 +57,8 @@ class Funcionario(models.Model):
     titulo = models.CharField('Titulo Profesional', max_length=20)
     email = models.EmailField('Correo Personal', blank=True, null=True)
     telefono = models.CharField('Telefono', max_length=20, blank=True, null=True)
+    begda = models.DateField('Designacion', default=datetime.now)
+    endda = models.DateField('Cese de Funciones', default='9999-12-31')
     activo = models.BooleanField(default=True)
     def __str__(self):
         return self.get_cargo_display() + ' de ' + self.organismo.nombre + '-' + self.nombres
