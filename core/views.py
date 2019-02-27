@@ -15,7 +15,7 @@ def home(request):
 
 def crear_sub_org(request, id_padre):
     new_org = Organismo()
-    new_org.padre = Organismo.objects.get(pk=id_padre) 
+    new_org.padre = Organismo.objects.get(pk=id_padre)
     new_org.nombre = 'SubOrganismo'
     new_org.save()
     return HttpResponseRedirect('/admin/core/organismo/'+ str(new_org.id) + '/change/')
