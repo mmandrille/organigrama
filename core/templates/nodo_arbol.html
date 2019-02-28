@@ -9,6 +9,13 @@
                 <p><b>Direccion:</b> {{ organismo.direccion }}</p>
                 <p><b>Telefonos:</b> {{ organismo.telefonos }}</p>
                 <a class="clean" target="_blank" href="{{ organismo.web }}"><b>Pagina Web</b></a>
+                
+                <br><hr>
+                {% with funcionario=organismo.funcionario_actual %}
+                    <p><b>{{ funcionario.get_cargo_display }}</b></p>
+                    <p>{{ funcionario.titulo }} {{ funcionario.nombres }} {{ funcionario.apellidos }}</p>
+                {% endwith %}
+
                 {% if user.is_staff %}
                     <p> 
 

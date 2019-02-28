@@ -1,16 +1,15 @@
 from __future__ import unicode_literals
-import datetime
 
 from django.db import models
 from tinymce.models import HTMLField
 from django.core.files.storage import FileSystemStorage
 
-from datetime import datetime
+from datetime import datetime, date
 #Import personales
 from organigrama.settings import MEDIA_URL
 
 #Choice Field
-CARGOS =    ((0,'Gobernador'), (0,'Vice Gobernador'),
+CARGOS =    ((0,'Gobernador'), (1,'Vice Gobernador'),
             (10,'Ministro'),
             (20,'Secretario'), (21, 'Secretaria'), (22, 'Subsecretario'), (23, 'SubScretaria'),
             (31, 'Director'), (32, 'Directora'), (33, 'SubDirector'), (34, 'SubDirectora'), 
@@ -46,9 +45,11 @@ class Organismo(models.Model):
             "nombre": self.nombre,
             "padre": self.padre.id,
         }
+    def funcionario_actual(self):
+        return self.funcionarios.filter(activo=True).first()
 
 class Funcionario(models.Model):
-    organismo = models.ForeignKey(Organismo, on_delete=models.CASCADE)
+    organismo = models.ForeignKey(Organismo, on_delete=models.CASCADE, related_name='funcionarios')
     cargo = models.IntegerField(choices=CARGOS, default=99)
     nombres = models.CharField('Nombres', max_length=100)
     apellidos = models.CharField('Apellidos', max_length=100)
@@ -58,10 +59,10 @@ class Funcionario(models.Model):
     email = models.EmailField('Correo Personal', blank=True, null=True)
     telefono = models.CharField('Telefono', max_length=20, blank=True, null=True)
     begda = models.DateField('Designacion', default=datetime.now)
-    endda = models.DateField('Cese de Funciones', default='9999-12-31')
+    endda = models.DateField('Cese de Funciones', default=date(9999, 12, 31))
     activo = models.BooleanField(default=True)
     def __str__(self):
-        return self.get_cargo_display() + ' de ' + self.organismo.nombre + '-' + self.nombres
+        return self.get_cargo_display() + ' de ' + self.organismo.nombre + '-' + self.nombres + ' ' + self.apellidos
     def as_dict(self):
         return {
             "organismo": self.organismo.id,
@@ -70,3 +71,7 @@ class Funcionario(models.Model):
             "cargo": dict(CARGOS).get(self.cargo),
             "dni": self.dni,
         }
+    def save(self, *args, **kwargs):
+        print("Super guardado")
+        self.organismo.funcionarios.exclude(pk=self.pk).filter(endda=self.endda).update(endda=self.begda, activo=False)
+        super(Funcionario, self).save(*args, **kwargs)
