@@ -51,6 +51,7 @@ class Organismo(models.Model):
 class Funcionario(models.Model):
     organismo = models.ForeignKey(Organismo, on_delete=models.CASCADE, related_name='funcionarios')
     cargo = models.IntegerField(choices=CARGOS, default=99)
+    funcion_unica = models.BooleanField(default=True)
     nombres = models.CharField('Nombres', max_length=100)
     apellidos = models.CharField('Apellidos', max_length=100)
     foto = models.ImageField(storage=FileSystemStorage(location=MEDIA_URL), blank=True, null=True)
@@ -73,5 +74,6 @@ class Funcionario(models.Model):
         }
     def save(self, *args, **kwargs):
         print("Super guardado")
-        self.organismo.funcionarios.exclude(pk=self.pk).filter(endda=self.endda).update(endda=self.begda, activo=False)
+        if funcion_unica:
+            self.organismo.funcionarios.exclude(pk=self.pk).filter(endda=self.endda).update(endda=self.begda, activo=False)
         super(Funcionario, self).save(*args, **kwargs)
