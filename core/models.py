@@ -74,6 +74,6 @@ class Funcionario(models.Model):
         }
     def save(self, *args, **kwargs):
         print("Super guardado")
-        if funcion_unica:
+        if self.funcion_unica:
             self.organismo.funcionarios.exclude(pk=self.pk).filter(endda=self.endda).update(endda=self.begda, activo=False)
         super(Funcionario, self).save(*args, **kwargs)
