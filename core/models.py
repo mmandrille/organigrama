@@ -14,11 +14,11 @@ CARGOS =    ((0,'Gobernador'), (1,'Vice Gobernador'),
             (20,'Secretario'), (21, 'Secretaria'), (22, 'Subsecretario'), (23, 'SubScretaria'),
             (31, 'Director'), (32, 'Directora'), (33, 'SubDirector'), (34, 'SubDirectora'), 
             (41, 'Coordinador'), (42, 'Coordinadora'),
-            (51, 'Consejal'), (52, 'Diputado'), (53, 'Senador'),
-            (61, 'Juez'), (62, 'Fiscal'), (63, 'Vocal'),
+            (51, 'Consejal'), (52, 'Diputado'), (53, 'Senador'), (54, 'Diputada'), (55, 'Senadora'),
+            (61, 'Juez'), (62, 'Fiscal'), (63, 'Vocal'), (64, 'Procurador'), (65, 'Procuradora'), (66, 'Defensor'),
             (71, 'Intendente'), (72, 'Comisionado'),
             (81, 'Escribano'), (82, 'Presidente'), (83, 'Vice Presidente'),
-            (91, 'Administrativo'), (92, 'Jefe'), (93, 'Obispo'), (94, 'Sacerdote'), (95, 'Consul'), (96, 'Asesor'))
+            (91, 'Administrativo'), (92, 'Jefe'), (93, 'Obispo'), (94, 'Sacerdote'), (95, 'Parroco'), (97, 'Consul'), (99, 'Asesor'))
 
 # Create your models here.
 class Organismo(models.Model):
@@ -78,7 +78,7 @@ class Funcionario(models.Model):
             "dni": self.dni,
         }
     def save(self, *args, **kwargs):
-        print("Super guardado")
+        print("Super guardado") #Tener en cuenta que puede haber diferentes cargos en un mismo organismo
         if self.funcion_unica:
             self.organismo.funcionarios.exclude(pk=self.pk).filter(endda=self.endda).update(endda=self.begda, activo=False)
         super(Funcionario, self).save(*args, **kwargs)
