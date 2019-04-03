@@ -51,7 +51,8 @@ class Organismo(models.Model):
 class Funcionario(models.Model):
     organismo = models.ForeignKey(Organismo, on_delete=models.SET_NULL, related_name='funcionarios', blank=True, null=True)
     cargo = models.IntegerField(choices=CARGOS)
-    funcion_unica = models.BooleanField(default=True)
+    subcargo = models.CharField('SubCargo', max_length=20, blank=True, null=True)
+    funcion_unica = models.BooleanField(default=False)
     nombres = models.CharField('Nombres', max_length=100)
     apellidos = models.CharField('Apellidos', max_length=100)
     foto = models.ImageField(storage=FileSystemStorage(location=MEDIA_URL), blank=True, null=True)

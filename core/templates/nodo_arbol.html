@@ -11,7 +11,7 @@
                 <a class="clean" target="_blank" href="{{ organismo.web }}"><b>Pagina Web</b></a>
                 
                 <br><hr>
-                {% with funcionario=organismo.funcionario_actual %}
+                {% with funcionario=organismo.funcionario_actual %} <!-- AGREGAR MOSTRAR VARIOS -->
                     <p><b>{{ funcionario.get_cargo_display }}</b></p>
                     <p>{{ funcionario.titulo }} {{ funcionario.nombres }} {{ funcionario.apellidos }}</p>
                 {% endwith %}
