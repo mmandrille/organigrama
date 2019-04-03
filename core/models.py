@@ -64,7 +64,10 @@ class Funcionario(models.Model):
     endda = models.DateField('Cese de Funciones', default=date(9999, 12, 31))
     activo = models.BooleanField(default=True)
     def __str__(self):
-        return self.get_cargo_display() + ' de ' + self.organismo.nombre + '-' + self.nombres + ' ' + self.apellidos
+        if self.organismo is None: 
+            return 'Sin Organismo > ' + self.nombres + ' ' + self.apellidos
+        else:
+            return self.organismo.nombre + ' > ' + self.nombres + ' ' + self.apellidos
     def as_dict(self):
         return {
             "organismo": self.organismo.id,
