@@ -9,9 +9,12 @@ from .models import Organismo, Funcionario
 
 # Create your views here.
 def home(request):
-    #Obtenemos todos los organismos
     origen = Organismo.objects.get(padre=None, activo=True)
     return render(request, 'home.html', {'origen': origen, })
+
+def home_limit(request, padre_id, max_child):
+    origen = Organismo.objects.get(id=padre_id)
+    return render(request, 'home_limit.html', {'origen': origen, 'max_child': max_child})
 
 def crear_sub_org(request, id_padre):
     new_org = Organismo()
@@ -24,7 +27,7 @@ def ws_org(request):
     organismos = [org.as_dict() for org in Organismo.objects.filter(activo=True)]
     return HttpResponse(json.dumps({"data": organismos}), content_type='application/json')
 
-def ws_org_max(request, padre, max_child):
+def ws_org_max(request, padre_id, max_child):
     organismos = Organismo.objects.none()
     org_buscar = Organismo.objects.filter(id=padre)
 

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+    {% block content %}
+        <div class="organigrama">
+            <ul>
+                {% include "nodo_arbol_limit.html" with organismo=origen max_child=max_child count=1 %}
+            </ul>
+        </div>
+        {% endblock %}
