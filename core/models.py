@@ -59,6 +59,7 @@ class Funcionario(models.Model):
     titulo = models.CharField('Titulo Profesional', max_length=20)
     email = models.EmailField('Correo Personal', blank=True, null=True)
     telefono = models.CharField('Telefono', max_length=20, blank=True, null=True)
+    decreto = models.IntegerField(blank=True, null=True)
     begda = models.DateField('Designacion', default=datetime.now)
     endda = models.DateField('Cese de Funciones', default=date(9999, 12, 31))
     activo = models.BooleanField(default=True)
