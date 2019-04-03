@@ -50,7 +50,7 @@ class Organismo(models.Model):
 
 class Funcionario(models.Model):
     organismo = models.ForeignKey(Organismo, on_delete=models.CASCADE, related_name='funcionarios')
-    cargo = models.IntegerField(choices=CARGOS, default=99)
+    cargo = models.IntegerField(choices=CARGOS)
     funcion_unica = models.BooleanField(default=True)
     nombres = models.CharField('Nombres', max_length=100)
     apellidos = models.CharField('Apellidos', max_length=100)
@@ -60,7 +60,7 @@ class Funcionario(models.Model):
     email = models.EmailField('Correo Personal', blank=True, null=True)
     telefono = models.CharField('Telefono', max_length=20, blank=True, null=True)
     decreto = models.IntegerField(blank=True, null=True)
-    begda = models.DateField('Designacion', default=datetime.now)
+    begda = models.DateField('Designacion',  default=date(2019, 1, 1))
     endda = models.DateField('Cese de Funciones', default=date(9999, 12, 31))
     activo = models.BooleanField(default=True)
     def __str__(self):
