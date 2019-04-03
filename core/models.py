@@ -49,7 +49,7 @@ class Organismo(models.Model):
         return self.funcionarios.filter(activo=True).first()
 
 class Funcionario(models.Model):
-    organismo = models.ForeignKey(Organismo, on_delete=models.CASCADE, related_name='funcionarios')
+    organismo = models.ForeignKey(Organismo, on_delete=models.SET_NULL, related_name='funcionarios', blank=True, null=True)
     cargo = models.IntegerField(choices=CARGOS)
     funcion_unica = models.BooleanField(default=True)
     nombres = models.CharField('Nombres', max_length=100)
