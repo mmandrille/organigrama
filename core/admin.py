@@ -2,8 +2,12 @@ from django.contrib import admin
 #Importamos nuestros modelos
 from .models import Organismo, Funcionario
 # Register your models here.
+class FuncionarioInline(admin.TabularInline):
+    model = Funcionario
+
 class OrganismoAdmin(admin.ModelAdmin):
     search_fields = ['nombre']
+    inlines = [FuncionarioInline]
 
 class FuncionarioAdmin(admin.ModelAdmin):
     search_fields = ['nombres', 'apellidos']
