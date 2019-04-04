@@ -2,15 +2,16 @@
             <a class "a_org">{{ organismo.nombre }}</a>
             <div class="popuptext">
                 <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'Organismo-{{organismo.id}}')">Organismo</button>
-                    <button class="tablinks" onclick="openCity(event, 'Funcionarios-{{organismo.id}}')">Funcionarios</button>
+                    <button class="tablinks" onclick="openTab(event, 'Organismo-{{organismo.id}}')">Organismo</button>
+                    <button class="tablinks" onclick="openTab(event, 'Funcionarios-{{organismo.id}}')">Funcionarios</button>
                     {% if user.is_staff %}
-                        <button class="tablinks" onclick="openCity(event, 'Admin-{{organismo.id}}')">Administracion</button>
+                        <button class="tablinks" onclick="openTab(event, 'Admin-{{organismo.id}}')">Administracion</button>
                     {% endif %}
                 </div>
 
                 <div id="Organismo-{{organismo.id}}" class="tabcontent">
                     {% if organismo.icono %} <img class = "img_logo" src="/{{ organismo.icono.url }}" >{% endif %}
+                    <div class="clean"><h2><a href='/{{organismo.id}}'>{{ organismo.nombre }}</a></h2></div>
                     <div class="clean">{{ organismo.descripcion|safe }}</div>
                     <h3> Informacion Util:</h3>
                     <p><b>Direccion:</b> {{ organismo.direccion }}</p>
@@ -30,13 +31,13 @@
                 
                 <div id="Admin-{{organismo.id}}" class="tabcontent">
                     {% if user.is_staff %}
-                        <p class="clean"> Modificar organismo o funcionarios</p>
+                        <p class="clean">Modificar organismo o funcionarios</p>
                             <a class="clean" target="_blank" href="/admin/core/organismo/{{ organismo.id }}/change/">
                                 <img class = "img_icon" src="/static/admin/img/icon-changelink.svg" alt="Modificar">
                             </a>
                         </p>
                         
-                        <p class="clean"> Crear SubOrganismo</p>
+                        <p class="clean">Crear SubOrganismo</p>
                             <a class="clean" target="_blank" href="/crear_hijo/{{ organismo.id }}">
                                 <img class = "img_icon" src="/static/admin/img/icon-addlink.svg" alt="Agregar SubOrganismo">
                             </a>

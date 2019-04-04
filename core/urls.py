@@ -6,6 +6,7 @@ app_name = 'core'
 urlpatterns = [
     #Personales
     url(r'^$', views.home, name='home'),
+    url(r'^(?P<origen_id>\d+)$', views.home, name='home'),
     path('origen/<int:padre_id>/max/<int:max_child>/', views.home_limit, name='home_limit'),
 
     #Edicion

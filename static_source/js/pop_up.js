@@ -3,6 +3,7 @@ $('.popup').on("click", function()
     $('.popuptext').removeClass("active");
     $(this).find('.popuptext').addClass("active");
     $('.popup-overlay').addClass("active");
+    //tenemos que agregar que abra pestaña Organismo-id
 });
 
 $('.popuptext').on("click", function()

@@ -8,8 +8,11 @@ from django.core import serializers
 from .models import Organismo, Funcionario
 
 # Create your views here.
-def home(request):
-    origen = Organismo.objects.get(padre=None, activo=True)
+def home(request, origen_id=None):
+    if origen_id is None:
+        origen = Organismo.objects.get(padre=None, activo=True)
+    else:
+        origen = Organismo.objects.get(id=origen_id, activo=True)
     return render(request, 'home.html', {'origen': origen, })
 
 def home_limit(request, padre_id, max_child):
