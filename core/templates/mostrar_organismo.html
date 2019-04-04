@@ -1,0 +1,47 @@
+        <div class="popup">
+            <a class "a_org">{{ organismo.nombre }}</a>
+            <div class="popuptext">
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'Organismo-{{organismo.id}}')">Organismo</button>
+                    <button class="tablinks" onclick="openCity(event, 'Funcionarios-{{organismo.id}}')">Funcionarios</button>
+                    {% if user.is_staff %}
+                        <button class="tablinks" onclick="openCity(event, 'Admin-{{organismo.id}}')">Administracion</button>
+                    {% endif %}
+                </div>
+
+                <div id="Organismo-{{organismo.id}}" class="tabcontent">
+                    {% if organismo.icono %} <img class = "img_logo" src="/{{ organismo.icono.url }}" >{% endif %}
+                    <div class="clean">{{ organismo.descripcion|safe }}</div>
+                    <h3> Informacion Util:</h3>
+                    <p><b>Direccion:</b> {{ organismo.direccion }}</p>
+                    <p><b>Telefonos:</b> {{ organismo.telefonos }}</p>
+                    <a class="clean" target="_blank" href="{{ organismo.web }}"><b>Pagina Web</b></a>
+                </div>
+                
+                <div id="Funcionarios-{{organismo.id}}" class="tabcontent">
+                    <h2>Funcionarios</h2>
+                    {% with funcionarios=organismo.funcionario_actual %}
+                        {% for funcionario in funcionarios %}
+                            <p><b>{{ funcionario.get_cargo_display }}</b></p>
+                            <p>{{ funcionario.titulo }} {{ funcionario.nombres }} {{ funcionario.apellidos }}</p>
+                        {% endfor %}
+                    {% endwith %}
+                </div>
+                
+                <div id="Admin-{{organismo.id}}" class="tabcontent">
+                    {% if user.is_staff %}
+                        <p class="clean"> Modificar organismo o funcionarios</p>
+                            <a class="clean" target="_blank" href="/admin/core/organismo/{{ organismo.id }}/change/">
+                                <img class = "img_icon" src="/static/admin/img/icon-changelink.svg" alt="Modificar">
+                            </a>
+                        </p>
+                        
+                        <p class="clean"> Crear SubOrganismo</p>
+                            <a class="clean" target="_blank" href="/crear_hijo/{{ organismo.id }}">
+                                <img class = "img_icon" src="/static/admin/img/icon-addlink.svg" alt="Agregar SubOrganismo">
+                            </a>
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>

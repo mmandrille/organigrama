@@ -46,7 +46,7 @@ class Organismo(models.Model):
             "padre": self.padre.id,
         }
     def funcionario_actual(self):
-        return self.funcionarios.filter(activo=True).first()
+        return self.funcionarios.filter(activo=True)
 
 class Funcionario(models.Model):
     organismo = models.ForeignKey(Organismo, on_delete=models.SET_NULL, related_name='funcionarios', blank=True, null=True)
@@ -78,7 +78,7 @@ class Funcionario(models.Model):
             "dni": self.dni,
         }
     def save(self, *args, **kwargs):
-        print("Super guardado") #Tener en cuenta que puede haber diferentes cargos en un mismo organismo
-        if self.funcion_unica:
+        print("Super guardado")
+        if self.funcion_unica:#tener en cuenta otros funcionarios
             self.organismo.funcionarios.exclude(pk=self.pk).filter(endda=self.endda).update(endda=self.begda, activo=False)
         super(Funcionario, self).save(*args, **kwargs)

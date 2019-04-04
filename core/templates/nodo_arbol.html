@@ -1,35 +1,6 @@
 {% block content %}
     <li>
-        <div class="popup">
-            <a class "a_org">{{ organismo.nombre }}</a>
-            <div class="popuptext">
-                {% if organismo.icono %} <img class = "img_logo" src="/{{ organismo.icono.url }}" >{% endif %}
-                <div class="clean">{{ organismo.descripcion|safe }}</div>
-                <h3> Informacion Util:</h3>
-                <p><b>Direccion:</b> {{ organismo.direccion }}</p>
-                <p><b>Telefonos:</b> {{ organismo.telefonos }}</p>
-                <a class="clean" target="_blank" href="{{ organismo.web }}"><b>Pagina Web</b></a>
-                
-                <br><hr>
-                {% with funcionario=organismo.funcionario_actual %} <!-- AGREGAR MOSTRAR VARIOS -->
-                    <p><b>{{ funcionario.get_cargo_display }}</b></p>
-                    <p>{{ funcionario.titulo }} {{ funcionario.nombres }} {{ funcionario.apellidos }}</p>
-                {% endwith %}
-
-                {% if user.is_staff %}
-                    <p> 
-
-                        <a class="clean" target="_blank" href="/admin/core/organismo/{{ organismo.id }}/change/">
-                            <img class = "img_icon" src="/static/admin/img/icon-changelink.svg" alt="Modificar">
-                        </a>
-                        <a class="clean" target="_blank" href="/crear_hijo/{{ organismo.id }}">
-                            <img class = "img_icon" src="/static/admin/img/icon-addlink.svg" alt="Agregar SubOrganismo">
-                        </a>
-                    </p>
-                {% endif %}
-            </div>
-        </div>
-
+        {% include "mostrar_organismo.html" with organismo=organismo %}
         {% if organismo.hijos.exists %}
             <ul>
                 {% for org_hijo in organismo.hijos.all %}
