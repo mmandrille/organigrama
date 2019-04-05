@@ -8,7 +8,7 @@ class FuncionarioInline(admin.TabularInline):
 class OrganismoAdmin(admin.ModelAdmin):
     search_fields = ['nombre']
     inlines = [FuncionarioInline]
-    raw_id_fields = ("organismo",)
+    raw_id_fields = ("padre",)
 
 class FuncionarioAdmin(admin.ModelAdmin):
     search_fields = ['nombres', 'apellidos']
