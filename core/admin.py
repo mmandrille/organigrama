@@ -8,10 +8,11 @@ class FuncionarioInline(admin.TabularInline):
 class OrganismoAdmin(admin.ModelAdmin):
     search_fields = ['nombre']
     inlines = [FuncionarioInline]
+    raw_id_fields = ("organismo",)
 
 class FuncionarioAdmin(admin.ModelAdmin):
-    raw_id_fields = ("organismo",)
     search_fields = ['nombres', 'apellidos']
+    raw_id_fields = ("organismo",)
 
 admin.site.register(Organismo, OrganismoAdmin)
 admin.site.register(Funcionario, FuncionarioAdmin)

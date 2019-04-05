@@ -22,7 +22,7 @@ CARGOS =    ((0,'Gobernador'), (1,'Vice Gobernador'),
 
 # Create your models here.
 class Organismo(models.Model):
-    padre = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='hijos')
+    padre = models.ForeignKey('self', on_delete=models.SET_NULL, blank=True, null=True, related_name='hijos')
     nombre = models.CharField('Titulo', max_length=200)
     descripcion = HTMLField(blank=True, null=True)
     icono = models.ImageField(storage=FileSystemStorage(location=MEDIA_URL), blank=True, null=True)
