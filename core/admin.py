@@ -10,6 +10,7 @@ class OrganismoAdmin(admin.ModelAdmin):
     inlines = [FuncionarioInline]
 
 class FuncionarioAdmin(admin.ModelAdmin):
+    raw_id_fields = ("organismo",)
     search_fields = ['nombres', 'apellidos']
 
 admin.site.register(Organismo, OrganismoAdmin)
