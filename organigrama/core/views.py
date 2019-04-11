@@ -32,7 +32,7 @@ def ws_org(request):
 
 def ws_org_max(request, padre_id, max_child):
     organismos = Organismo.objects.none()
-    org_buscar = Organismo.objects.filter(id=padre)
+    org_buscar = Organismo.objects.filter(id=padre_id)
 
     for x in range(max_child):
         organismos = organismos | org_buscar
