@@ -1,3 +1,6 @@
 django
 django-tinymce
 pillow
+xhtml2pdf
+html5lib
+pypdf
