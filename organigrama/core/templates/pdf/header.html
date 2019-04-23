@@ -1,0 +1,16 @@
+{% load static %}
+
+{% block content %}
+    <div class="header">
+        <img src="{% static 'img/hornacal.jpg' %}" alt="(Edit)" class="imagen_header">
+        <div class="header_titulo">
+            <h1>Nomina Provincial</h1>
+        </div>
+        <div class="header_encabezado">
+            <p class="">Fecha: {{ fecha | date:"d/m/Y" }}</p>
+        </div>
+        <div class="header_logo">
+            <img src="{% static 'img/jujuy.png' %}" alt="(Edit)">
+        </div>
+    </div>
+{% endblock %}

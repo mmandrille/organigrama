@@ -39,9 +39,9 @@ class Organismo(models.Model):
     jerarquia = models.IntegerField(choices=JERARQUIA, default=0)
     descripcion = HTMLField(blank=True, null=True)
     icono = models.ImageField(storage=FileSystemStorage(location=MEDIA_URL), blank=True, null=True)
-    direccion = models.CharField('Direccion', max_length=200)
+    direccion = models.CharField('Direccion', max_length=200, blank=True, null=True)
     cuit = models.CharField('CUIT', max_length=13, blank=True, null=True)
-    telefonos = models.CharField('Telefonos', max_length=100)
+    telefonos = models.CharField('Telefonos', max_length=100, blank=True, null=True)
     web = models.URLField('Web', blank=True, null=True)
     activo = models.BooleanField(default=True)
     visible = models.BooleanField(default=True)
@@ -91,7 +91,6 @@ class Funcionario(models.Model):
             "dni": self.dni,
         }
     def save(self, *args, **kwargs):
-        print("Super guardado")
-        if self.funcion_unica:#tener en cuenta otros funcionarios
-            self.organismo.funcionarios.exclude(pk=self.pk).filter(endda=self.endda).update(endda=self.begda, activo=False)
+        if self.activo == True and self.funcion_unica:#tener en cuenta otros funcionarios
+            self.organismo.funcionarios.exclude(pk=self.pk).filter(cargo=self.cargo,subcargo=self.subcargo).update(endda=self.begda, activo=False)
         super(Funcionario, self).save(*args, **kwargs)
