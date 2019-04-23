@@ -1,7 +1,6 @@
 {% load static %}
 
 {% block content %}
-    <div class="listado">
     {% if organismo.activo and organismo.visible %}
         <div class="organismo">
             <div class="institucional">
@@ -13,7 +12,6 @@
                         </a>
                     {% endif %}
                 </p>
-                <!-- <p>{{organismo.descripcion | safe}}</p> -->
                 <p>Direccion: {{organismo.direccion}}</p>
                 <p>Telefonos: {{organismo.telefonos}}</p>
                 {% if organismo.web %}<p><a href="{{organismo.web}}">Pagina Web</a></p>{% endif %}
@@ -43,7 +41,6 @@
                     {% endif %}
                 {% endfor %}
             </div>
-            <br>
             {% if organismo.hijos.exists %}
                 {% for org_hijo in organismo.hijos.all %}
                     {% include "pdf/nodo_pdf.html" with organismo=org_hijo edit=edit %}
@@ -51,5 +48,4 @@
             {% endif %}
         </div>
     {% endif %}
-    
 {% endblock %}
