@@ -10,10 +10,10 @@ from organigrama.settings import MEDIA_URL
 
 #Choice Field
 JERARQUIA = ((0, 'Sin Jerarquia'),
-            (10, 'Poder'),
+            (10, 'Poder Gubernamental'),
             (20, 'Gobernacion'),
             (30, 'Ministerio'),(31, 'Secretaria'),(32, 'SubSecretaria'),(33, 'Direccion'),(34, 'Coordinacion'),
-            (40, 'Senado'),
+            (40, 'Legislativo'),
             (50, 'Judicial'),
             (60, 'Municipio'),(61, 'Intendencia'),(62, 'Consejo'),
             (70, 'Escleciastico'),

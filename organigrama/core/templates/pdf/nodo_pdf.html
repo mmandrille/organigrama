@@ -1,12 +1,32 @@
 {% block content %}
-    <li>
-        {% include "mostrar_organismo.html" with organismo=organismo %}
+    <div class="organismo">
+        <div class="institucional">
+            <p>
+                <b>{{ organismo.nombre }}</b>
+                <a class="clean" target="_blank" href="/admin/core/organismo/{{ organismo.id }}/change/">
+                    <img src="/static/img/edit_icon.png" alt="(Edit)" class="icono">  
+                </a>
+            </p>
+            <p>Direccion: {{ organismo.direccion }}</p>
+            <p>Telefonos: {{ organismo.telefonos }}</p>
+        </div>
+        <div class="funcionarios">
+            {% for funcionario in organismo.funcionarios.all %}
+                {% if funcionario.activo %}
+                        <p>
+                            <b>{{ funcionario.get_cargo_display}}:</b> {{ funcionario.apellidos }}, {{ funcionario.nombres }}
+                            <a class="clean" target="_blank" href="/admin/core/funcionario/{{ funcionario.id }}/change/">
+                                <img src="/static/img/edit_icon.png" alt="(Edit)" class="icono">
+                            </a>
+                        </p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br>
         {% if organismo.hijos.exists %}
-            <ul>
-                {% for org_hijo in organismo.hijos.all %}
-                    {% include "nodo_pdf.html" with organismo=org_hijo %}
-                {% endfor %}
-            </ul>
+            {% for org_hijo in organismo.hijos.all %}
+                {% include "pdf/nodo_pdf.html" with organismo=org_hijo %}
+            {% endfor %}
         {% endif %}
-    </li>
+    </div>
 {% endblock %}

@@ -9,6 +9,7 @@ class OrganismoAdmin(admin.ModelAdmin):
     search_fields = ['nombre']
     inlines = [FuncionarioInline]
     raw_id_fields = ("padre",)
+    list_filter = ['jerarquia',]
 
 class FuncionarioAdmin(admin.ModelAdmin):
     search_fields = ['nombres', 'apellidos']

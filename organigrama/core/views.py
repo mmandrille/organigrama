@@ -23,6 +23,11 @@ def home_limit(request, padre_id, max_child):
     origen = Organismo.objects.get(id=padre_id)
     return render(request, 'home_limit.html', {'origen': origen, 'max_child': max_child})
 
+def home_listado(request, editable=None):
+    origen = Organismo.objects.filter(padre=None, activo=True).order_by('id').first()
+    fecha = timezone.now()
+    return render(request, 'pdf/lista_pdf.html', {'origen': origen, 'editable': editable, 'fecha': fecha, })
+
 def home_pdf(request, origen_id=None):
     if origen_id is None:
         origen = Organismo.objects.filter(padre=None, activo=True).order_by('id').first()
