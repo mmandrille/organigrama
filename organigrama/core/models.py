@@ -91,13 +91,6 @@ class Funcionario(models.Model):
             "dni": self.dni,
         }
     def save(self, *args, **kwargs):
-<<<<<<< HEAD
         if self.activo == True and self.funcion_unica:#tener en cuenta otros funcionarios
             self.organismo.funcionarios.exclude(pk=self.pk).filter(cargo=self.cargo,subcargo=self.subcargo).update(endda=self.begda, activo=False)
         super(Funcionario, self).save(*args, **kwargs)
-=======
-        print("Super guardado")
-        if self.funcion_unica:#tener en cuenta otros funcionarios
-            self.organismo.funcionarios.exclude(pk=self.pk).filter(endda=self.endda).update(endda=self.begda, activo=False)
-        super(Funcionario, self).save(*args, **kwargs)
->>>>>>> 9a7a7e56e7fb26714128bc5243e78f92ef44be4f
