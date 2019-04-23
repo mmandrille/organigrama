@@ -7,10 +7,17 @@
             <h1>Nomina Provincial</h1>
         </div>
         <div class="header_encabezado">
-            <p class="">Fecha: {{ fecha | date:"d/m/Y" }}</p>
+            <p >Fecha: {{ fecha | date:"d/m/Y" }}</p>
         </div>
         <div class="header_logo">
             <img src="{% static 'img/jujuy.png' %}" alt="(Edit)">
         </div>
     </div>
+    {% if user.is_staff %}
+        {% if editable %}
+            <a class="derecha" href="/lista">Ir a version normal</a>
+        {% else %}    
+            <a class="derecha" href="/lista_edit">Ir a version editable</a>
+        {% endif %}
+    {% endif %}
 {% endblock %}

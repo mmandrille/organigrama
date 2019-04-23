@@ -10,8 +10,8 @@ urlpatterns = [
     path('origen/<int:padre_id>/max/<int:max_child>/', views.home_limit, name='home_limit'),
 
     #Generar Listado
-    url(r'^lista$', views.home_listado, name='home_pdf'),
-    url(r'^lista/(?P<editable>\d)$', views.home_listado, name='home_pdf'),    
+    path('lista', views.home_listado, name='home_pdf'),
+    path('lista_edit', views.home_listado, name='home_pdf'),    
     
     #Generar PDF
     url(r'^pdf$', views.home_pdf, name='home_pdf'),

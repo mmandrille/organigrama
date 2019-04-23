@@ -42,6 +42,10 @@
             right: 16px;
         }
 
+        .derecha {
+            text-align: right;
+            float: right;
+        }
         .listado {
             width: 100%;   
         }
@@ -59,7 +63,7 @@
         }
         .funcionarios{
             display: inline-block;
-            width: 40%;
+            width: 50%;
             vertical-align: top;
             border-left-width: thin;
             border-left-style: solid;
@@ -67,7 +71,6 @@
         }
 
         .funcionario{
-
             border-bottom-width: thin;
             border-bottom-style: solid;
             border-bottom-color: gray;
@@ -98,7 +101,7 @@
 <body>
     {% include "pdf/header.html" with fecha=fecha %}
     <div class="listado">
-        {% include "pdf/nodo_pdf.html" with organismo=origen %}
+        {% include "pdf/nodo_pdf.html" with organismo=origen editable=editable %}
     </div>
 </body>
 </html>

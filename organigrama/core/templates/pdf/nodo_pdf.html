@@ -7,9 +7,11 @@
             <div class="institucional">
                 <p>
                     <b>{{organismo.nombre}}</b>
-                    <a class="clean" target="_blank" href="/admin/core/organismo/{{ organismo.id }}/change/">
-                        <img src="/static/img/edit_icon.png" alt="(Edit)" class="icono">  
-                    </a>
+                    {% if editable %}
+                        <a class="clean" target="_blank" href="/admin/core/organismo/{{ organismo.id }}/change/">
+                            <img src="/static/img/edit_icon.png" alt="(Edit)" class="icono">  
+                        </a>
+                    {% endif %}
                 </p>
                 <!-- <p>{{organismo.descripcion | safe}}</p> -->
                 <p>Direccion: {{organismo.direccion}}</p>
@@ -20,17 +22,19 @@
                 {% for funcionario in organismo.funcionarios.all %}
                     {% if funcionario.activo %}
                         <div class="funcionario">
-                            <div class="funcionario_foto">
-                                {% if funcionario.foto %}
-                                    <img src="{{funcionario.foto.url}}" alt="(Edit)" class="img_funcionario">  
-                                {%endif%}
-                            </div>
+                            {% if funcionario.foto %}
+                                <div class="funcionario_foto">
+                                        <img src="/{{funcionario.foto.url}}" alt="(foto)" class="img_funcionario">      
+                                </div>
+                            {% endif %}
                             <div class="funcionario_info">
                                 <p>
                                     <b>{{funcionario.get_cargo_display}}:</b> {{funcionario.titulo}} {{funcionario.apellidos}}, {{funcionario.nombres}}
-                                    <a class="clean" target="_blank" href="/admin/core/funcionario/{{ funcionario.id }}/change/">
-                                        <img src="{% static 'img/edit_icon.png' %}" alt="(Edit)" class="icono">
-                                    </a>
+                                    {% if editable %}
+                                        <a class="clean" target="_blank" href="/admin/core/funcionario/{{ funcionario.id }}/change/">
+                                            <img src="{% static 'img/edit_icon.png' %}" alt="(Edit)" class="icono">
+                                        </a>
+                                    {% endif %}
                                 </p>
                                 <p>{% if funcionario.telefono %}<b>Telefono:</b>{{funcionario.telefono}}{%endif%}</p>
                                 <p>{% if funcionario.email %}<b>Email:</b>{{funcionario.email}}{%endif%}</p>
@@ -42,7 +46,7 @@
             <br>
             {% if organismo.hijos.exists %}
                 {% for org_hijo in organismo.hijos.all %}
-                    {% include "pdf/nodo_pdf.html" with organismo=org_hijo %}
+                    {% include "pdf/nodo_pdf.html" with organismo=org_hijo edit=edit %}
                 {% endfor %}
             {% endif %}
         </div>
