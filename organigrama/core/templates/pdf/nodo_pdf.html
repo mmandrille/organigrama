@@ -1,0 +1,12 @@
+{% block content %}
+    <li>
+        {% include "mostrar_organismo.html" with organismo=organismo %}
+        {% if organismo.hijos.exists %}
+            <ul>
+                {% for org_hijo in organismo.hijos.all %}
+                    {% include "nodo_pdf.html" with organismo=org_hijo %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endblock %}

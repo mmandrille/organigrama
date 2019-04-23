@@ -9,6 +9,10 @@ urlpatterns = [
     url(r'^(?P<origen_id>\d+)$', views.home, name='home'),
     path('origen/<int:padre_id>/max/<int:max_child>/', views.home_limit, name='home_limit'),
 
+    #Generar PDF
+    url(r'^pdf$', views.home_pdf, name='home_pdf'),
+    url(r'^pdf/(?P<origen_id>\d+)$', views.home_pdf, name='home_pdf'),
+
     #Edicion
     path('crear_hijo/<int:id_padre>/', views.crear_sub_org, name='crear_sub_org'),
     

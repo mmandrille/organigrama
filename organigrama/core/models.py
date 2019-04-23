@@ -9,9 +9,21 @@ from datetime import datetime, date
 from organigrama.settings import MEDIA_URL
 
 #Choice Field
-CARGOS =    ((0,'Gobernador'), (1,'Vice Gobernador'),
-            (10,'Ministro'),
-            (20,'Secretario'), (21, 'Secretaria'), (22, 'Subsecretario'), (23, 'SubScretaria'),
+JERARQUIA = ((0, 'Sin Jerarquia'),
+            (10, 'Poder'),
+            (20, 'Gobernacion'),
+            (30, 'Ministerio'),(31, 'Secretaria'),(32, 'SubSecretaria'),(33, 'Direccion'),(34, 'Coordinacion'),
+            (40, 'Senado'),
+            (50, 'Judicial'),
+            (60, 'Municipio'),(61, 'Intendencia'),(62, 'Consejo'),
+            (70, 'Escleciastico'),
+            (80, 'Privados'),
+            )
+
+CARGOS =    ((0, 'Sin Cargo'),
+            (1, 'Gobernador'), (2, 'Vice Gobernador'),
+            (10, 'Ministro'),
+            (20, 'Secretario'), (21, 'Secretaria'), (22, 'Subsecretario'), (23, 'SubScretaria'),
             (31, 'Director'), (32, 'Directora'), (33, 'SubDirector'), (34, 'SubDirectora'), 
             (41, 'Coordinador'), (42, 'Coordinadora'),
             (51, 'Consejal'), (52, 'Diputado'), (53, 'Senador'), (54, 'Diputada'), (55, 'Senadora'),
@@ -24,6 +36,7 @@ CARGOS =    ((0,'Gobernador'), (1,'Vice Gobernador'),
 class Organismo(models.Model):
     padre = models.ForeignKey('self', on_delete=models.SET_NULL, blank=True, null=True, related_name='hijos')
     nombre = models.CharField('Titulo', max_length=200)
+    jerarquia = models.IntegerField(choices=JERARQUIA, default=0)
     descripcion = HTMLField(blank=True, null=True)
     icono = models.ImageField(storage=FileSystemStorage(location=MEDIA_URL), blank=True, null=True)
     direccion = models.CharField('Direccion', max_length=200)
@@ -36,7 +49,7 @@ class Organismo(models.Model):
         if self.padre is not None:
             return self.nombre + ' > ' + self.padre.nombre
         else:
-            return self.nombre
+            return self.nombre + ' (Sin Asignar)'
     def as_dict(self):
         if self.padre is None:
             self.padre = self
@@ -50,7 +63,7 @@ class Organismo(models.Model):
 
 class Funcionario(models.Model):
     organismo = models.ForeignKey(Organismo, on_delete=models.SET_NULL, related_name='funcionarios', blank=True, null=True)
-    cargo = models.IntegerField(choices=CARGOS)
+    cargo = models.IntegerField(choices=CARGOS, default=0)
     subcargo = models.CharField('SubCargo', max_length=20, blank=True, null=True)
     funcion_unica = models.BooleanField(default=False)
     nombres = models.CharField('Nombres', max_length=100)
