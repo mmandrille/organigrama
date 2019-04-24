@@ -21,12 +21,9 @@
                 
                 <div id="Funcionarios-{{organismo.id}}" class="tabcontent">
                     <h2>Funcionarios</h2>
-                    {% with funcionarios=organismo.funcionario_actual %}
-                        {% for funcionario in funcionarios %}
-                            <p><b>{{ funcionario.get_cargo_display }}</b></p>
-                            <p>{{ funcionario.titulo }} {{ funcionario.nombres }} {{ funcionario.apellidos }}</p>
-                        {% endfor %}
-                    {% endwith %}
+                    <div class="funcionarios" style="width: 100%">
+                        {% include "mostrar_funcionario.html" with organismo=organismo %}
+                    </div>
                 </div>
                 
                 <div id="Admin-{{organismo.id}}" class="tabcontent">

@@ -1,0 +1,27 @@
+{% load static %}
+
+{% block content %}
+    {% with funcionarios=organismo.funcionario_actual %}
+        {% for funcionario in funcionarios %}
+            <div class="funcionario">
+                {% if funcionario.foto %}
+                    <div class="funcionario_foto">
+                            <img src="/{{funcionario.foto.url}}" alt="(foto)" class="img_funcionario">      
+                    </div>
+                {% endif %}
+                <div class="funcionario_info">
+                    <p>
+                        <b>{{funcionario.get_cargo_display}}:</b> {{funcionario.titulo}} {{funcionario.apellidos}}, {{funcionario.nombres}}
+                        {% if editable %}
+                            <a class="clean" target="_blank" href="/admin/core/funcionario/{{ funcionario.id }}/change/">
+                                <img src="{% static 'img/edit_icon.png' %}" alt="(Edit)" class="icono">
+                            </a>
+                        {% endif %}
+                    </p>
+                    <p>{% if funcionario.telefono %}<b>Telefono:</b>{{funcionario.telefono}}{%endif%}</p>
+                    <p>{% if funcionario.email %}<b>Email:</b>{{funcionario.email}}{%endif%}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endwith %}
+{% endblock %}

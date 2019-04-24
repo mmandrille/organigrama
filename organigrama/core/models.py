@@ -43,7 +43,7 @@ class Organismo(models.Model):
     cuit = models.CharField('CUIT', max_length=13, blank=True, null=True)
     telefonos = models.CharField('Telefonos', max_length=100, blank=True, null=True)
     web = models.URLField('Web', blank=True, null=True)
-    color = models.CharField(max_length=7, blank=True, null=True)
+    color = models.CharField(max_length=7, default="#ffffff")
     activo = models.BooleanField(default=True)
     visible = models.BooleanField(default=True)
     def __str__(self):
