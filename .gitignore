@@ -1,20 +1,15 @@
 # exclude everything except directory foo/bar
+/**/credenciales.py
+/**/*.pyc
+/**/archivos/*
+/**/static
+/**/migrations/*
+/**/venv
+/**/*.log
+/**/*.pot
+/**/*.pyc
+/**/__pycache__
 db.sqlite3
-credenciales.py
-*.pyc
-*/archivos/*
-archivos/*
-static/*
-*/static/*
-*/migrations/*
-
-# Django #
-*.log
-*.pot
-*.pyc
-__pycache__
-db.sqlite3
-media
 
 # Backup files # 
 *.bak 

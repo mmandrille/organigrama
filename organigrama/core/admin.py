@@ -1,7 +1,9 @@
 from django.contrib import admin
-#Importamos nuestros modelos
+#Import Personales
+from .form import OrganismoForm
 from .models import Organismo, Funcionario
-# Register your models here.
+
+#Particularidades
 class FuncionarioInline(admin.TabularInline):
     model = Funcionario
 
@@ -10,10 +12,12 @@ class OrganismoAdmin(admin.ModelAdmin):
     inlines = [FuncionarioInline]
     raw_id_fields = ("padre",)
     list_filter = ['jerarquia',]
+    form = OrganismoForm
 
 class FuncionarioAdmin(admin.ModelAdmin):
     search_fields = ['nombres', 'apellidos']
     raw_id_fields = ("organismo",)
 
+# Register your models here.
 admin.site.register(Organismo, OrganismoAdmin)
 admin.site.register(Funcionario, FuncionarioAdmin)

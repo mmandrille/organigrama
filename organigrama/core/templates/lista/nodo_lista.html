@@ -2,7 +2,7 @@
 
 {% block content %}
     {% if organismo.activo and organismo.visible %}
-        <div class="organismo">
+        <div class="organismo" style="background-image: linear-gradient(to bottom right, {{organismo.color}} , white);">
             <div class="institucional">
                 <p>
                     <b>{{organismo.nombre}}</b>
@@ -12,8 +12,8 @@
                         </a>
                     {% endif %}
                 </p>
-                <p>Direccion: {{organismo.direccion}}</p>
-                <p>Telefonos: {{organismo.telefonos}}</p>
+                {% if organismo.direccion %}<p>Direccion: {{organismo.direccion}}</p>{% endif %}
+                {% if organismo.telefonos %}<p>Telefonos: {{organismo.telefonos}}</p>{% endif %}
                 {% if organismo.web %}<p><a href="{{organismo.web}}">Pagina Web</a></p>{% endif %}
             </div>
             <div class="funcionarios">
@@ -43,7 +43,7 @@
             </div>
             {% if organismo.hijos.exists %}
                 {% for org_hijo in organismo.hijos.all %}
-                    {% include "pdf/nodo_pdf.html" with organismo=org_hijo edit=edit %}
+                    {% include "lista/nodo_lista.html" with organismo=org_hijo edit=edit %}
                 {% endfor %}
             {% endif %}
         </div>

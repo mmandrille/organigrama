@@ -8,7 +8,6 @@ from django.utils import timezone
 
 #Import Personales
 from .models import Organismo, Funcionario
-from .render import Custom_render
 
 
 # Create your views here.
@@ -31,20 +30,7 @@ def home_listado(request):
     else:
         edit = True
     print(request.path_info)
-    return render(request, 'pdf/lista_pdf.html', {'origen': origen, 'editable': edit, 'fecha': fecha, })
-
-def home_pdf(request, origen_id=None):
-    if origen_id is None:
-        origen = Organismo.objects.filter(padre=None, activo=True).order_by('id').first()
-    else:
-        origen = Organismo.objects.get(id=origen_id, activo=True)
-    today = timezone.now()
-    params = {
-        'today': today,
-        'request': request,
-        'origen' : origen,
-    }
-    return Custom_render.pdf('pdf/lista_pdf.html', params)
+    return render(request, 'lista/lista.html', {'origen': origen, 'editable': edit, 'fecha': fecha, })
 
 def crear_sub_org(request, id_padre):
     new_org = Organismo()

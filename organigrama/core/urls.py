@@ -11,11 +11,7 @@ urlpatterns = [
 
     #Generar Listado
     path('lista', views.home_listado, name='home_pdf'),
-    path('lista_edit', views.home_listado, name='home_pdf'),    
-    
-    #Generar PDF
-    url(r'^pdf$', views.home_pdf, name='home_pdf'),
-    url(r'^pdf/(?P<origen_id>\d+)$', views.home_pdf, name='home_pdf'),
+    path('lista_edit', views.home_listado, name='home_pdf'),
 
     #Edicion
     path('crear_hijo/<int:id_padre>/', views.crear_sub_org, name='crear_sub_org'),

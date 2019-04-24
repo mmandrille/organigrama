@@ -13,11 +13,13 @@
             <img src="{% static 'img/jujuy.png' %}" alt="(Edit)">
         </div>
     </div>
+    <p><a class="derecha" href="" onclick="Imprimir()">(Imprimir Nomina)</a></p>
+    <br>
     {% if user.is_staff %}
         {% if editable %}
-            <a class="derecha" href="/lista">Ir a version normal</a>
+            <p><a class="derecha" href="/lista">Ir a version normal</a></p>
         {% else %}    
-            <a class="derecha" href="/lista_edit">Ir a version editable</a>
+            <p><a class="derecha" href="/lista_edit">Ir a version editable</a></p>
         {% endif %}
     {% endif %}
 {% endblock %}

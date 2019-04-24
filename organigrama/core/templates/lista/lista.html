@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Nomina Provincial</title>
+        {% load static %}
+        <link rel="icon" href="{% static 'img/favicon.ico' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/lista.css' %}" />
+    </head>
+    <body>
+        {% include "lista/header.html" with fecha=fecha %}
+        <div class="listado">
+            {% include "lista/nodo_lista.html" with organismo=origen editable=editable %}
+        </div>
+    </body>
+
+
+    <script>
+        function Imprimir() {
+        window.print();
+        }
+    </script>
+</html>
